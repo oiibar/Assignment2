@@ -1,4 +1,6 @@
-package org.example;
+package org.example.algorithm;
+
+import org.example.metrics.Metrics;
 
 public final class SelectionSort {
     public static Metrics sort(int[] a) {

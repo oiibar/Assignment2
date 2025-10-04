@@ -1,10 +1,13 @@
-import org.example.Metrics;
-import org.example.SelectionSort;
+import org.example.metrics.Metrics;
+import org.example.algorithm.SelectionSort;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
+import java.util.Random;
 
 public class SelectionSortTest {
+
+    // Helper that checks if array is sorted
     private boolean isSorted(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] < arr[i - 1]) return false;
@@ -19,6 +22,46 @@ public class SelectionSortTest {
         assertTrue(isSorted(a), "Empty array should remain sorted");
         assertEquals(0, a.length);
         assertNotNull(m);
+    }
+
+    @Test
+    public void testRandomArraysAgainstJavaSort() {
+        // Property-based test: compare SelectionSort with Arrays.sort()
+        Random rand = new Random();
+        for (int n = 1; n <= 500; n += 50) {
+            int[] arr = rand.ints(n, 0, 1000).toArray();
+            int[] expected = Arrays.copyOf(arr, arr.length);
+            Arrays.sort(expected);
+
+            int[] actual = Arrays.copyOf(arr, arr.length);
+            SelectionSort.sort(actual);
+
+            assertArrayEquals(expected, actual, "SelectionSort result must match Arrays.sort()");
+        }
+    }
+
+    @Test
+    public void testNearlySortedArray() {
+        // Array almost sorted except for one inversion
+        int[] arr = {1, 2, 3, 5, 4, 6, 7, 8};
+        int[] expected = Arrays.copyOf(arr, arr.length);
+        Arrays.sort(expected);
+
+        SelectionSort.sort(arr);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void testScalability() {
+        // Performance check on growing input sizes
+        int[] sizes = {100, 1000, 10000};
+        for (int n : sizes) {
+            int[] arr = new Random().ints(n, 0, n*10).toArray();
+            Metrics m = SelectionSort.sort(arr);
+            assertTrue(isSorted(arr), "Array should be sorted for size " + n);
+            System.out.printf("n=%d -> time=%.3f ms, comparisons=%d, swaps=%d%n",
+                    n, m.timeNano / 1_000_000.0, m.comparisons, m.swaps);
+        }
     }
 
     @Test
@@ -71,6 +114,7 @@ public class SelectionSortTest {
 
     @Test
     public void testLargeArray() {
+        // Large reversed array to stress test algorithm
         int n = 1000;
         int[] a = new int[n];
         for (int i = 0; i < n; i++) {
@@ -84,6 +128,7 @@ public class SelectionSortTest {
 
     @Test
     public void testNullArrayThrowsException() {
+        // Verify defensive programming (null input not allowed)
         assertThrows(IllegalArgumentException.class, () -> {
             SelectionSort.sort(null);
         });
