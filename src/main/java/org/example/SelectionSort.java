@@ -4,6 +4,7 @@ public final class SelectionSort {
     public static Metrics sort(int[] a) {
         if (a == null) throw new IllegalArgumentException("Input array is null");
         Metrics m = new Metrics();
+        m.memoryAllocations++;
         long start = System.nanoTime();
 
         int n = a.length;
@@ -45,6 +46,7 @@ public final class SelectionSort {
             if (minIdx != i) {
                 int tmp = a[i];
                 m.arrayAccesses++;
+                m.memoryAllocations++;
 
                 a[i] = a[minIdx];
                 m.arrayAccesses++;
