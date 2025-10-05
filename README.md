@@ -64,6 +64,10 @@ The experimental results confirm theoretical expectations:
 
 ---
 
+## Plots
+### 1. Time vs Input Size
+![Time vs Input Size](src/main/java/org/example/docs/plot.png)
+
 ## 🔹 Running the Selection Sort CLI
 
 The project includes an **interactive CLI** (`SelectionSortCLI`) that allows you to test the algorithm with different input sizes and array distributions.
