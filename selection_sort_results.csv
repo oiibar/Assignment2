@@ -1,0 +1,10 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: n","Param: type"
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"0,006862","0,000503","ms/op",100,random
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"0,000162","0,000009","ms/op",100,sorted
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"0,006961","0,000117","ms/op",100,reversed
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"0,388124","0,041571","ms/op",1000,random
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"0,001223","0,000124","ms/op",1000,sorted
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"0,672286","0,021100","ms/op",1000,reversed
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"34,909969","3,597829","ms/op",10000,random
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"0,014651","0,000266","ms/op",10000,sorted
+"org.example.benchmark.SelectionSortBenchmark.benchmarkSelectionSort","avgt",1,5,"26,438872","1,631776","ms/op",10000,reversed
